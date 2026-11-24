@@ -50,5 +50,19 @@ footer a{color:inherit}
 <video class="tall" controls playsinline preload="none" poster="alen-poster.jpg" src="alen-full.mp4"></video>
 <footer>Made by Carlos Acuña, Fiba Labs.<br>Music: "Wallpaper" by Kevin MacLeod (<a href="https://incompetech.com" target="_blank" rel="noopener">incompetech.com</a>), licensed under <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener">CC BY 4.0</a>. The Alex Hormozi clip is his, shown as an example of the talk-plus-drawings format.</footer>
 </main>
+<script data-goatcounter="https://fibalabs.goatcounter.com/count" data-goatcounter-settings='{"path":"/video-reel/"}' async src="https://gc.zgo.at/count.js"></script>
+<script>
+document.querySelectorAll('video').forEach(function (v) {
+  var name = v.getAttribute('src').replace('.mp4', ''), sent = {};
+  function track(step) {
+    if (sent[step] || !window.goatcounter || !window.goatcounter.count) return;
+    sent[step] = true;
+    window.goatcounter.count({path: name + '-' + step, title: name + ' ' + step, event: true});
+  }
+  v.addEventListener('playing', function () { track('play'); });
+  v.addEventListener('timeupdate', function () { if (v.duration && v.currentTime >= v.duration / 2) track('half'); });
+  v.addEventListener('ended', function () { track('finished'); });
+});
+</script>
 </body>
 </html>
